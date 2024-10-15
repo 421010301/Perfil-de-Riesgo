@@ -1,0 +1,38 @@
+.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.appended-up {
+  animation: appended-up 1s ease-in-out;
+}
+
+.appended-down {
+  animation: appended-down 1s ease-in-out;
+}
+
+@keyframes appended-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes appended-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

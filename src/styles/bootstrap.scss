@@ -1,0 +1,19 @@
+@import "animations.scss";
+@import "modals.scss";
+
+// Primero importar las funciones de Bootstrap
+@import "node_modules/bootstrap/scss/functions";
+
+$primary: #2c3e50;   // Azul oscuro y profundo, moderno y minimalista.
+$secondary: #7f8c8d; // Gris suave para acentos o secundarios, muy neutro.
+$success: #27ae60;   // Verde profesional, pero no demasiado llamativo.
+$info: #2980b9;      // Azul intermedio para la información importante.
+$warning: #f39c12;   // Naranja suave que advierte sin ser demasiado brillante.
+$danger: #e74c3c;    // Rojo claro, ideal para denotar riesgos sin ser abrumador.
+$light: #ecf0f1;     // Blanco suave para fondos limpios.
+$dark: #34495e;      // Azul oscuro para textos o detalles contrastantes.
+
+@import "node_modules/bootstrap/scss/variables";
+
+// Finalmente, importar Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
