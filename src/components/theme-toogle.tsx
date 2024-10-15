@@ -19,7 +19,7 @@ export default function ThemeToggle() {
     };
 
     return (
-        <button className="btn btn-primary p-0 p-2 position-absolute rounded-circle" onClick={toggleTheme} style={{
+        <button className="btn btn-primary p-0 p-2 position-fixed rounded-circle" onClick={toggleTheme} style={{
             right: '1rem',
             bottom: '1rem',
             zIndex: 1000,

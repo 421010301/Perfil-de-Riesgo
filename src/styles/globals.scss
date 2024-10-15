@@ -1,11 +1,10 @@
 @import "bootstrap.scss";
 
 body {
-    min-height: 100vh;
-    display: flex;
+  min-height: 100vh;
+  display: flex;
 }
 
 * {
-    transition: background-color 0.5s, color 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 }
-
