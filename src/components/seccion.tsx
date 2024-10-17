@@ -1,35 +1,32 @@
 import { Pregunta } from "@/app/test/page";
+import { useTestContext } from "@/utils/test-context";
+import Link from "next/link";
 
 interface SeccionProps {
     pregunta: Pregunta;
-    opcionSeleccionada: string | null;
-    seleccionarOpcion: (opcion: string) => void;
-    siguientePregunta: () => void;
     isUltimaPregunta: boolean;
 }
 
 const Seccion: React.FC<SeccionProps> = ({
     pregunta,
-    opcionSeleccionada,
-    seleccionarOpcion,
-    siguientePregunta,
     isUltimaPregunta,
 }) => {
+    const { testTerminado, opcionSeleccionada, seleccionarOpcion, siguientePregunta } = useTestContext()
     return (
-        <div className="mt-5">
+        <div className="mt-3">
             <div className="card text-center py-3 shadow-sm">
-                <h4 className="m-0">{pregunta.pregunta}</h4>
+                <h4 className="m-0 mx-3">{pregunta.pregunta}</h4>
             </div>
-            <div className="row my-3">
+            <div className="row">
                 {pregunta.opciones.map((opcion) => (
-                    <div className="col-md-6 mb-3" key={opcion.opcion}>
+                    <div className="col-md-6 mt-3" key={opcion.opcion}>
                         <div
-                            className={`card p-3 h-100 ${opcionSeleccionada === opcion.opcion ? 'border-primary' : ''
+                            className={`card p-3 h-100 ${opcionSeleccionada === opcion.opcion ? 'alert alert-primary m-0' : ''
                                 }`}
                             onClick={() => seleccionarOpcion(opcion.opcion)}
                             style={{ cursor: 'pointer' }}
                         >
-                            <div className="form-check">
+                            <div className="form-check ">
                                 <input
                                     type="radio"
                                     name="opcion"
@@ -39,19 +36,19 @@ const Seccion: React.FC<SeccionProps> = ({
                                     onChange={() => seleccionarOpcion(opcion.opcion)}
                                     style={{ display: 'none' }}
                                 />
-                                <h5 className="card-title">{opcion.opcion}.- {opcion.descripcion}</h5>
+                                <h5 className="card-title m-0">{opcion.opcion}.- {opcion.descripcion}</h5>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            <button
-                className="btn btn-primary mt-3 w-100"
+            {testTerminado ? <Link href="/resultado" className="btn btn-primary my-3 w-100" scroll replace>Finalizar</Link> : <button
+                className="btn btn-primary my-3 w-100"
                 onClick={siguientePregunta}
                 disabled={!opcionSeleccionada}
             >
                 {isUltimaPregunta ? 'Finalizar' : 'Siguiente'}
-            </button>
+            </button>}
         </div>
     );
 };

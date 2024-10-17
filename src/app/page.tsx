@@ -1,8 +1,17 @@
 "use client"
-import Link from 'next/link'
+import { useTestContext } from '@/utils/test-context'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function Home() {
+  const { resetTest } = useTestContext()
+  const router = useRouter()
+
+  const handleClick = () => {
+    resetTest()
+    router.push("/test")
+  }
+
   return (
     <div className='m-auto'>
       <div className="container text-center">
@@ -15,9 +24,9 @@ export default function Home() {
         <p className='mb-4'>
           El test es rápido y fácil de completar. Responde sinceramente para obtener el mejor resultado.
         </p>
-        <Link href='/test' className='btn btn-primary btn-lg mb-5' >
+        <button className='btn btn-primary btn-lg mb-5' onClick={handleClick}>
           Iniciar Test
-        </Link>
+        </button>
       </div>
     </div>
   )

@@ -1,16 +1,28 @@
+"use client"
 import { useTestContext } from '@/utils/test-context';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
-export default function Resultados() {
-    const { determinarPerfilDeRiesgo, respuestas } = useTestContext()
+export default function Resultado() {
+    const { perfilDeRiesgo, respuestas, resetTest } = useTestContext()
+    const router = useRouter()
 
-    const perfilRiesgo = determinarPerfilDeRiesgo();
+    const handleClick = () => {
+        resetTest()
+        router.push("/test")
+    }
+
+    if (!perfilDeRiesgo || !respuestas) {
+        router.replace("/")
+        return <></>
+    }
 
     return (
-        <div className="mt-5">
+        <div className="mt-5 container">
+            <h1>Resultados</h1>
             <div className="mt-4">
-                {perfilRiesgo === 'Adverso al riesgo' && (
+                {perfilDeRiesgo === 'Adverso al riesgo' && (
                     <div className="alert alert-danger mt-3" role="alert">
                         <h4 className="alert-heading">Inversionista Adverso al Riesgo</h4>
                         <p>
@@ -22,7 +34,7 @@ export default function Resultados() {
                     </div>
                 )}
 
-                {perfilRiesgo === 'Moderado' && (
+                {perfilDeRiesgo === 'Moderado' && (
                     <div className="alert alert-warning mt-3" role="alert">
                         <h4 className="alert-heading">Inversionista Moderado</h4>
                         <p>
@@ -34,7 +46,7 @@ export default function Resultados() {
                     </div>
                 )}
 
-                {perfilRiesgo === 'Propenso al riesgo' && (
+                {perfilDeRiesgo === 'Propenso al riesgo' && (
                     <div className="alert alert-primary mt-3" role="alert">
                         <h4 className="alert-heading">Inversionista Propenso al Riesgo</h4>
                         <p>
@@ -46,7 +58,7 @@ export default function Resultados() {
                     </div>
                 )}
 
-                {perfilRiesgo === 'Sofisticado' && (
+                {perfilDeRiesgo === 'Sofisticado' && (
                     <div className="alert alert-success mt-3" role="alert">
                         <h4 className="alert-heading">Inversionista Sofisticado</h4>
                         <p>
@@ -60,11 +72,11 @@ export default function Resultados() {
             </div>
 
             <div className='d-flex justify-content-between align-items-center mb-3'>
-                <h3 className="text-primary m-0">Resumen de tus respuestas:</h3>
+                <h3 className="m-0">Resumen de tus respuestas:</h3>
                 <div>
-                    <Link href="/test" className="btn btn-primary">
+                    <button onClick={handleClick} className="btn btn-primary">
                         Volver a realizar el test
-                    </Link>
+                    </button>
                 </div>
             </div>
             <div className="row">
@@ -81,13 +93,6 @@ export default function Resultados() {
                         </div>
                     </div>
                 ))}
-            </div>
-            <div className='d-flex justify-content-center mb-3'>
-                <div>
-                    <Link href="/" className="btn btn-primary">
-                        Volver al inicio
-                    </Link>
-                </div>
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from 'next/font/google'
 import "@/styles/globals.scss";
 import ThemeToggle from "@/components/theme-toogle";
+import Provider from "@/components/provider";
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -9,6 +10,7 @@ const roboto = Roboto({
   style: ['normal', 'italic'],
   display: 'swap',
 });
+
 export const metadata: Metadata = {
   title: "Test de perfil de riego",
   description: "Test de perfil de riego para inversionistas",
@@ -22,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-bs-theme="auto">
       <body className={roboto.className}>
-        {children}
+        <Provider>
+          {children}
+        </Provider>
         <ThemeToggle />
       </body>
     </html>
